@@ -3,7 +3,7 @@
         <h1 class="page-header">Add claim</h1>
     </div>  
 </div> -->
-<div class="row" ng-controller="addClaimCtrl">
+<div class="row" ng-controller="addClaimCtrl" style="margin-top: 30px;">
     <div class="col-lg-12">
         <div ng-show="newClaim" class="panel panel-default">
             <div class="panel-heading">
@@ -39,7 +39,7 @@
                                     Photographic Evidence
                                 </div>
                                 <div class="panel-body" style="text-align: center;">
-                                    <img class="col-lg-12" id="blah" src="/img/970fatal.jpg" height="320px" alt="" />
+                                    <img class="col-lg-12" id="blah" ng-src="{{claim.image}}" height="320px" alt="" />
                                 </div>
                             </div>
                             <div style="text-align: center;">
