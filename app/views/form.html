@@ -1,0 +1,94 @@
+<!-- <div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Add claim</h1>
+    </div>  
+</div> -->
+<div class="row" ng-controller="addClaimCtrl">
+    <div class="col-lg-12">
+        <div ng-show="newClaim" class="panel panel-default">
+            <div class="panel-heading">
+                Add claim
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>National ID</label>
+                                <input class="form-control" ng-model="claim.id">
+                            </div>
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input class="form-control" ng-model="claim.name">
+                            </div>
+                            <div class="form-group">
+                                <label>Claim Description</label>
+                                <textarea name="claimDescription" class="form-control" ng-model="claim.description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Amount</label>
+                                <input type="number" class="form-control" ng-model="claim.amount">
+                            </div>
+                            <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+                            <button type="reset" ng-click="reset()" class="btn btn-default">Reset</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                            <div ng-show="shouldShowImage" class="chat-panel panel panel-default">
+                                <div class="panel-heading">
+                                    Photographic Evidence
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                    <img class="col-lg-12" id="blah" src="/img/970fatal.jpg" height="320px" alt="" />
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                    <button ng-show="!shouldShowImage" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#myModal" style="margin-top:150px;">
+                                        Fly Drone
+                                    </button>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 1200px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Drone Control Console</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+
+                                                    <div class="col-lg-6">
+                                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/nQDcDZ6rmGE?controls=0&amp;start=30&amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                        </div>
+                                    
+                                                        <img class="col-lg-6" id="blah" src="/img/dronecontrols.png" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" ng-click="showImage()" data-dismiss="modal">Take Picture</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <div ng-show="!newClaim" class="row" style="text-align: center;">
+            <div style="margin-top: 200px;">
+                <button class="btn btn-default btn-xl" ng-click="newClaim = true">New</button>
+                <button class="btn btn-default btn-xl" ui-sref="dashboard.home">All Claims</button>
+            </div>
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
