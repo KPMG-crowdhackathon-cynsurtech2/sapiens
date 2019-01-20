@@ -13,7 +13,7 @@ angular.module('sbAdminApp')
         restrict: 'E',
         replace: true,
         link: function(scope, el, attr){
-            $http.get('https://test.bigchaindb.com/api/v1/assets/?search=mmtest6').then(function(data){
+            $http.get('https://test.bigchaindb.com/api/v1/assets/?search=mmtest7').then(function(data){
                 scope.items = data.data.sort(function(a,b){
                     return (a.data.datetime > b.data.datetime) ? -1 : 1;
                 });

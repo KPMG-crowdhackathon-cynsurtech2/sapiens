@@ -10,7 +10,7 @@ angular.module('sbAdminApp')
   .controller('ChartCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
 		
 $scope.quote = {
-	asset_id: "mmtest6",
+	asset_id: "mmtest7",
 	type: 'quote',
 	name: 'ARG Auto Repair Group Ltd'
 }
