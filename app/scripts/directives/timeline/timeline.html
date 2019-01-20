@@ -1,7 +1,7 @@
 <div class="panel-body">
     <ul class="timeline">
         <li ng-repeat="item in items" ng-class="{'timeline-inverted': $index % 2 == 1}">
-                <div ng-if="item.data.type == 'claim'" class="timeline-badge"><i class="fa fa-check"></i>
+                <div ng-if="item.data.type == 'claim'" class="timeline-badge"><i class="fa fa-edit"></i>
                 </div>
                 <div ng-if="item.data.type == 'claim'" class="timeline-panel">
                     <div class="timeline-heading">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                 </div>
-                <div ng-if="item.data.type == 'quote'" class="timeline-badge"><i class="fa fa-check"></i>
+                <div ng-if="item.data.type == 'quote'" class="timeline-badge"><i class="fa fa-flag"></i>
                 </div>
                 <div ng-if="item.data.type == 'quote'" class="timeline-panel">
                     <div class="timeline-heading">
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                 </div>
-                <div ng-if="item.data.type == 'payment'" class="timeline-badge"><i class="fa fa-check"></i>
+                <div ng-if="item.data.type == 'payment'" class="timeline-badge"><i class="fa fa-dollar"></i>
                 </div>
                 <div ng-if="item.data.type == 'payment'" class="timeline-panel">
                     <div class="timeline-heading">
