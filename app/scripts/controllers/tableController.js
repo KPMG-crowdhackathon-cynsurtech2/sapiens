@@ -15,14 +15,14 @@ angular.module('sbAdminApp')
       })
       
 $scope.receipt = {
-    asset_id: "mmtest8",
+    asset_id: "mmtest10",
 	type: 'receipt',
     name: 'ARG Auto Repair Group Ltd',
     image: '/img/Auto-repair-receipt.png'
 }
 
 $scope.payment = {
-	asset_id: "mmtest8",
+	asset_id: "mmtest10",
 	type: 'payment',
 	iban: 'CY17 0020 0128 0000 0012 0052 7600'
 }
