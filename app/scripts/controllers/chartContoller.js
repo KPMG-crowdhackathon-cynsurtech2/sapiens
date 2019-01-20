@@ -8,62 +8,49 @@
  */
 angular.module('sbAdminApp')
   .controller('ChartCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-    $scope.line = {
-	    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-	    series: ['Series A', 'Series B'],
-	    data: [
-	      [65, 59, 80, 81, 56, 55, 40],
-	      [28, 48, 40, 19, 86, 27, 90]
-	    ],
-	    onClick: function (points, evt) {
-	      console.log(points, evt);
-	    }
-    };
+		
+$scope.quote = {
+	asset_id: "mmtest6",
+	type: 'quote',
+	name: 'ARG Auto Repair Group Ltd'
+}
 
-    $scope.bar = {
-	    labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
-		series: ['Series A', 'Series B'],
+$scope.newQuote = true;
+$scope.submitForm = function(){
 
-		data: [
-		   [65, 59, 80, 81, 56, 55, 40],
-		   [28, 48, 40, 19, 86, 27, 90]
-		]
-    	
-    };
+	const API_PATH = 'https://test.bigchaindb.com/api/v1/'
 
-    $scope.donut = {
-    	labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
-    	data: [300, 500, 100]
-    };
+	// Create a new keypair.
+	const alice = new BigchainDB.Ed25519Keypair()
+$scope.quote.datetime = new Date();
+	// Construct a transaction payload
+	const tx = BigchainDB.Transaction.makeCreateTransaction(
+			// Define the asset to store, in this example it is the current temperature
+			// (in Celsius) for the city of Berlin.
+			$scope.quote,
 
-    $scope.radar = {
-    	labels:["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+			// Metadata contains information about the transaction itself
+			// (can be `null` if not needed)
+			{ what: 'My first BigchainDB transaction' },
 
-    	data:[
-    	    [65, 59, 90, 81, 56, 55, 40],
-    	    [28, 48, 40, 19, 96, 27, 100]
-    	]
-    };
+			// A transaction needs an output
+			[ BigchainDB.Transaction.makeOutput(
+							BigchainDB.Transaction.makeEd25519Condition(alice.publicKey))
+			],
+			alice.publicKey
+	)
 
-    $scope.pie = {
-    	labels : ["Download Sales", "In-Store Sales", "Mail-Order Sales"],
-    	data : [300, 500, 100]
-    };
+	// Sign the transaction with private keys
+	const txSigned = BigchainDB.Transaction.signTransaction(tx, alice.privateKey)
 
-    $scope.polar = {
-    	labels : ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"],
-    	data : [300, 500, 100, 40, 120]
-    };
+	// Send the transaction off to BigchainDB
+	let conn = new BigchainDB.Connection(API_PATH)
 
-    $scope.dynamic = {
-    	labels : ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"],
-    	data : [300, 500, 100, 40, 120],
-    	type : 'PolarArea',
-
-    	toggle : function () 
-    	{
-    		this.type = this.type === 'PolarArea' ?
-    	    'Pie' : 'PolarArea';
-		}
-    };
+	conn.postTransactionCommit(txSigned)
+			.then(res => {
+					console.log('Transaction', txSigned.id, 'accepted')
+			})
+	// Check console for the transaction's status
+	$scope.newQuote = false;
+}
 }]);

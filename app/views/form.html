@@ -25,23 +25,39 @@
                                 <label>Claim Description</label>
                                 <textarea name="claimDescription" class="form-control" ng-model="claim.description"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label>Amount</label>
-                                <input type="number" class="form-control" ng-model="claim.amount">
+                            <div ng-show="shouldShowImage" class="chat-panel panel panel-default">
+                                <div class="panel-heading">
+                                    Repair QR Code
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                    <img id="blah" src="https://internationalbarcodes.net/wp-content/uploads/2017/04/QR%20code%20example.jpg" height="320px" alt="" />
+                                </div>
                             </div>
                             <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
                             <button type="reset" ng-click="reset()" class="btn btn-default">Reset</button>
                         </form>
                     </div>
                     <div class="col-lg-6">
-                            <div ng-show="shouldShowImage" class="chat-panel panel panel-default">
-                                <div class="panel-heading">
-                                    Photographic Evidence
-                                </div>
-                                <div class="panel-body" style="text-align: center;">
-                                    <img class="col-lg-12" id="blah" ng-src="{{claim.image}}" height="320px" alt="" />
-                                </div>
+                            <div ng-show="shouldShowImage">
+                                    <div class="chat-panel panel panel-default">
+                                        <div class="panel-heading">
+                                            Photographic Evidence
+                                        </div>
+                                        <div class="panel-body" style="text-align: center;">
+                                            <img class="col-lg-12" id="blah" ng-src="{{claim.image}}" height="320px" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="chat-panel panel panel-default">
+                                        <div class="panel-heading">
+                                            Suggested Repair
+                                        </div>
+                                        <div class="panel-body" style="text-align: center;">
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d16951.582773438662!2d33.36426954682427!3d35.160802420774274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scar+repair!5e0!3m2!1sen!2s!4v1547968306231" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                            </div>
+                                    </div>
+
                             </div>
+
                             <div style="text-align: center;">
                                     <button ng-show="!shouldShowImage" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#myModal" style="margin-top:150px;">
                                         Fly Drone
@@ -60,7 +76,7 @@
                                             <div class="row">
 
                                                     <div class="col-lg-6">
-                                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/nQDcDZ6rmGE?controls=0&amp;start=30&amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/nQDcDZ6rmGE?controls=0&amp;start=30&amp;autoplay=1&amp;loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; loop" allowfullscreen></iframe>
                                                         </div>
                                     
                                                         <img class="col-lg-6" id="blah" src="/img/dronecontrols.png" alt="" />

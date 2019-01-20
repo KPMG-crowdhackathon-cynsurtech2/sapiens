@@ -1,23 +1,137 @@
 <div class="panel-body">
     <ul class="timeline">
-        <li ng-repeat="item in claims" ng-class="{'timeline-inverted': $index % 2 == 1}">
-            <div class="timeline-badge"><i class="fa fa-check"></i>
-            </div>
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">ID: {{item.data.id}}</h4>
-                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> {{item.data.datetime | date:'MMM d, y h:mm:ss a'}}</small>
-                    </p>
-                    <p><small class="text-muted"><i class="fa fa-user"></i> {{item.data.name}}</small>
-                    </p>
-                    <p><small class="text-muted"><i class="fa fa-money"></i> {{item.data.amount}}</small>
-                    </p>
+        <li ng-repeat="item in items" ng-class="{'timeline-inverted': $index % 2 == 1}">
+                <div ng-if="item.data.type == 'claim'" class="timeline-badge"><i class="fa fa-check"></i>
                 </div>
-                <div class="timeline-body">
-                    <p>{{item.data.description}}</p>
-                    <img class="col-lg-12" ng-src="{{item.data.image}}"/>
+                <div ng-if="item.data.type == 'claim'" class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">Claim</h4>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> {{item.data.datetime | date:'MMM d, y h:mm:ss a'}}</small>
+                        </p>
+                        <p><small class="text-muted"><i class="fa fa-user"></i> {{item.data.name}} ({{item.data.id}})</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Claim Description
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        <p>{{item.data.description}}</p>
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Evidence
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        <img class="col-lg-12" ng-src="{{item.data.image}}"/>
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    QR Code
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        <img class="col-lg-12" ng-src="{{item.data.qr}}"/>
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Map
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d16951.582773438662!2d33.36426954682427!3d35.160802420774274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scar+repair!5e0!3m2!1sen!2s!4v1547968306231" width="300" height="225" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                <!-- <div ng-bind-html="item.data.map"></div> -->
+                                    </div>
+                            </div>
+                        </div>
                 </div>
-            </div>
+                <div ng-if="item.data.type == 'quote'" class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div ng-if="item.data.type == 'quote'" class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">Quote</h4>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> {{item.data.datetime | date:'MMM d, y h:mm:ss a'}}</small>
+                        </p>
+                        <p><small class="text-muted"><i class="fa fa-car"></i> {{item.data.name}}</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Damage Description
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        <p>{{item.data.description}}</p>
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Initial Estimate
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        {{item.data.amount}}
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+                <div ng-if="item.data.type == 'receipt'" class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div ng-if="item.data.type == 'receipt'" class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">Receipt</h4>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> {{item.data.datetime | date:'MMM d, y h:mm:ss a'}}</small>
+                        </p>
+                        <p><small class="text-muted"><i class="fa fa-car"></i> {{item.data.name}}</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Total Cost
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        {{item.data.amount}}
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Receipt Copy
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        <img ng-src="{{item.data.image}}" alt="" class="col-md-12">
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+                <div ng-if="item.data.type == 'payment'" class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div ng-if="item.data.type == 'payment'" class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">Claim Settlement</h4>
+                        <p><small class="text-muted"><i class="fa fa-clock-o"></i> {{item.data.datetime | date:'MMM d, y h:mm:ss a'}}</small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Settlement Amount
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        {{item.data.amount}}
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    IBAN
+                                </div>
+                                <div class="panel-body" style="text-align: center;">
+                                        {{item.data.iban}}
+                                    </div>
+                            </div>
+                        </div>
+                </div>
         </li>
     </ul>
 </div>

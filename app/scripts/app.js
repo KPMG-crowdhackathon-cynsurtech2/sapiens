@@ -13,6 +13,7 @@ angular
     'ui.router',
     'ui.bootstrap',
     'angular-loading-bar',
+    'ngSanitize'
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
     
@@ -145,7 +146,16 @@ angular
     })
       .state('dashboard.table',{
         templateUrl:'views/table.html',
-        url:'/table'
+        url:'/table',
+        controller:'TableCtrl',
+        resolve: {
+          loadMyFile:function($ocLazyLoad) {
+            return  $ocLazyLoad.load({
+                name:'sbAdminApp',
+                files:['scripts/controllers/tableController.js']
+            })
+          }
+        }
     })
       .state('dashboard.panels-wells',{
           templateUrl:'views/ui-elements/panels-wells.html',
